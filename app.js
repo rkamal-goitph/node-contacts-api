@@ -17,7 +17,13 @@ const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 // middleware is logger function coming from MORGAN
 // we are passing formatsLogger as the value of our logger function
 app.use(logger(formatsLogger));
-app.use(cors());
+app.use(
+  cors({
+    origin: "*", // or '*' for allowing all origins
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 // this is the JSON parser middleware
 app.use(express.json());
 
