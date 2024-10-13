@@ -1,4 +1,5 @@
 import { Contact } from "../models/contactsModel.js";
+import { contactValidation } from "../validation/validation.js";
 
 // This is how the MVC Architecture looks like
 
