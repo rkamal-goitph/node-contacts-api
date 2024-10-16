@@ -4,6 +4,9 @@ import cors from "cors";
 
 import { router as contactsRouter } from "./routes/api/contactsRouter.js";
 import { router as usersRouter } from "./routes/api/usersRouter.js";
+import { swaggerSpecs, swaggerUi } from "./swaggerConfig.js";
+
+// Now you can access the Swagger documentation at http://localhost:3000/api-docs
 
 // initialize an express application
 const app = express();
@@ -19,8 +22,8 @@ const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 app.use(logger(formatsLogger));
 app.use(
   cors({
-    origin: ["http://localhost:3001", "https://github.com/yourname"], // or '*' for allowing all origins
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    origin: "http://localhost:3001", // or '*' for allowing all origins
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
@@ -31,6 +34,8 @@ app.use(express.json());
 // http://localhost:3000/avatars/medium.webp
 // we need to access the localhost port followed by the directory of the static file and the file name and extension
 app.use(express.static("public"));
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
 
 // initialize the base path for the contacts router
 app.use("/api/contacts", contactsRouter);

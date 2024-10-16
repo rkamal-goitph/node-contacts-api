@@ -16,7 +16,7 @@ mongoose
   })
   .then(() => {
     app.listen(PORT, () => {
-      console.log("Server is running. Use our API on port: 3000");
+      console.log(`Server is running. Use our API on port: ${PORT}`);
     });
 
     console.log("Database connect successful");
