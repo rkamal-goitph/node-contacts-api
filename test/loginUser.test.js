@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { jest } from "@jest/globals";
 import { User } from "../models/usersModel";
 import request from "supertest";
